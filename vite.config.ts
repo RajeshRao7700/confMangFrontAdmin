@@ -20,7 +20,7 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://confmangsys.onrender.com',
         changeOrigin: true,
         secure: false,
       },
