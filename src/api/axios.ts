@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://confmangsys.onrender.com';
 const DEFAULT_TENANT_DOMAIN = import.meta.env.VITE_TENANT_DOMAIN || 'apex.com';
 
 export const apiClient = axios.create({
