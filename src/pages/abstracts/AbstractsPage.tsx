@@ -62,6 +62,16 @@ export const AbstractsPage: React.FC = () => {
         </div>
       ),
     },
+    {
+      header: 'Author / Contact',
+      cell: (row) => (
+        <div>
+          <p className="font-semibold text-slate-900 line-clamp-1">{row.authorName || '—'}</p>
+          <p className="text-xs text-slate-500">{row.authorEmail || '—'}</p>
+          {row.authorOrganization && <p className="text-xs text-slate-400">{row.authorOrganization}</p>}
+        </div>
+      ),
+    },
     { header: 'Presentation', accessor: 'presentationType' },
     {
       header: 'Submission Status',
@@ -135,6 +145,21 @@ export const AbstractsPage: React.FC = () => {
               <h4 className="font-bold text-slate-900 text-sm">{selectedAbstract.title}</h4>
               <p className="text-xs text-slate-600 line-clamp-4 pt-1 whitespace-pre-line">{selectedAbstract.abstractText}</p>
             </div>
+
+            {/* Author Information Card */}
+            {(selectedAbstract.authorName || selectedAbstract.authorEmail) && (
+              <div className="p-3 bg-indigo-50/70 border border-indigo-100 rounded-lg text-xs space-y-1.5">
+                <span className="font-semibold text-indigo-900 uppercase tracking-wider text-[10px]">Author Information</span>
+                <div className="grid grid-cols-2 gap-2 text-slate-700">
+                  <div><strong className="text-slate-900">Name:</strong> {selectedAbstract.authorName || '—'}</div>
+                  <div><strong className="text-slate-900">Email:</strong> {selectedAbstract.authorEmail || '—'}</div>
+                  {selectedAbstract.authorPhone && <div><strong className="text-slate-900">Phone:</strong> {selectedAbstract.authorPhone}</div>}
+                  {selectedAbstract.authorOrganization && <div><strong className="text-slate-900">Organization:</strong> {selectedAbstract.authorOrganization}</div>}
+                  {selectedAbstract.authorCountry && <div><strong className="text-slate-900">Country:</strong> {selectedAbstract.authorCountry}</div>}
+                  {selectedAbstract.registrationId && <div><strong className="text-slate-900">Linked Reg ID:</strong> #{selectedAbstract.registrationId}</div>}
+                </div>
+              </div>
+            )}
 
             <Select
               label="Review Decision / Status"

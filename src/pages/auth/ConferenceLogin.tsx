@@ -10,7 +10,7 @@ export const ConferenceLogin: React.FC = () => {
   const navigate = useNavigate();
 
   const [step, setStep] = useState<1 | 2>(1);
-  const [shortName, setShortName] = useState<string>('GIAI2027');
+  const [shortName, setShortName] = useState<string>('WCCAUP2027');
   const [otp, setOtp] = useState<string>('');
   const [debugOtp, setDebugOtp] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);

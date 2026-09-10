@@ -94,6 +94,11 @@ export interface AbstractSubmission {
   title: string;
   abstractText: string;
   keywords?: string;
+  authorName?: string;
+  authorEmail?: string;
+  authorPhone?: string;
+  authorOrganization?: string;
+  authorCountry?: string;
   presentationType: PresentationType;
   submissionStatus: AbstractSubmissionStatus;
   submittedAt?: string;
