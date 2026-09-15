@@ -22,6 +22,7 @@ import {
   Receipt,
   BarChart3,
 } from 'lucide-react';
+import { formatCurrency } from '@/utils/formatters';
 
 export const Dashboard: React.FC = () => {
   const { conferenceContext, user, role } = useAuth();
@@ -99,13 +100,13 @@ export const Dashboard: React.FC = () => {
           <StatCard
             title="Total Registrations"
             value={regReport?.total ?? '—'}
-            subtitle={`Active: ${regReport?.active ?? 0} | Completed: ${regReport?.completed ?? 0}`}
+            subtitle={`Completed: ${regReport?.completed ?? 0} | Active: ${regReport?.active ?? 0}`}
             icon={<Users className="w-5 h-5" />}
             color="indigo"
           />
           <StatCard
             title="Total Revenue Collected"
-            value={paymentReport?.totalPaidAmount ? `$${Number(paymentReport.totalPaidAmount).toLocaleString()}` : '$0'}
+            value={formatCurrency(paymentReport?.totalPaidAmount, paymentReport?.currency)}
             subtitle={`Paid Transactions: ${paymentReport?.paidCount ?? 0}`}
             icon={<CreditCard className="w-5 h-5" />}
             color="emerald"
@@ -139,15 +140,19 @@ export const Dashboard: React.FC = () => {
           </div>
           <div className="space-y-3 text-xs">
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Active Registrations</span>
+              <span className="text-slate-600 font-medium">Completed (Paid)</span>
+              <span className="font-bold text-emerald-600">{regReport?.completed ?? 0}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-slate-600 font-medium">Active Registrations</span>
               <span className="font-bold text-slate-900">{regReport?.active ?? 0}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Pending Payment</span>
+              <span className="text-slate-600 font-medium">Pending Payment</span>
               <span className="font-bold text-amber-600">{regReport?.pending ?? 0}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-600">Cancelled Registrations</span>
+              <span className="text-slate-600 font-medium">Cancelled Registrations</span>
               <span className="font-bold text-rose-600">{regReport?.cancelled ?? 0}</span>
             </div>
           </div>

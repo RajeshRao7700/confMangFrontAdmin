@@ -10,6 +10,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Badge, getStatusBadgeVariant } from '@/components/ui/Badge';
 import { Toast, ToastMessage } from '@/components/ui/Toast';
 import { CreditCard, Eye, Search, Copy, Check } from 'lucide-react';
+import { formatCurrency } from '@/utils/formatters';
 
 export const RegistrationsPage: React.FC = () => {
   const queryClient = useQueryClient();
@@ -66,6 +67,14 @@ export const RegistrationsPage: React.FC = () => {
       ),
     },
     { header: 'Type', accessor: 'registrationType' },
+    {
+      header: 'Amount',
+      cell: (row) => (
+        <span className="font-semibold text-slate-800">
+          {formatCurrency(row.amount, row.currency)}
+        </span>
+      ),
+    },
     {
       header: 'Payment Status',
       cell: (row) => (

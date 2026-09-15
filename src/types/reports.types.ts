@@ -15,6 +15,7 @@ export interface PaymentReportResponse {
   cancelledCount: number;
   refundedCount: number;
   totalPaidAmount: number;
+  currency?: string;
 }
 
 export interface AbstractReportResponse {

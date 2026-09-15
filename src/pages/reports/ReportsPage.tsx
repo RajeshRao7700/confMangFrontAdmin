@@ -6,6 +6,7 @@ import { StatCard } from '@/components/ui/StatCard';
 import { Button } from '@/components/ui/Button';
 import { Toast, ToastMessage } from '@/components/ui/Toast';
 import { BarChart3, Download, Users, CreditCard, FileSpreadsheet, MailX } from 'lucide-react';
+import { formatCurrency } from '@/utils/formatters';
 
 export const ReportsPage: React.FC = () => {
   const [toast, setToast] = useState<ToastMessage | null>(null);
@@ -90,7 +91,7 @@ export const ReportsPage: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatCard
             title="Total Paid Revenue"
-            value={payReport?.totalPaidAmount ? `$${Number(payReport.totalPaidAmount).toLocaleString()}` : '$0'}
+            value={formatCurrency(payReport?.totalPaidAmount, payReport?.currency)}
             color="emerald"
           />
           <StatCard title="Paid Count" value={payReport?.paidCount ?? 0} color="emerald" />
